@@ -1,0 +1,10 @@
+spring:
+  aplication:
+    name: ms-credit
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8082
+logging:
+  level:
+    root: info
