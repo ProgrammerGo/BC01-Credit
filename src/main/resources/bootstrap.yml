@@ -1,10 +1,44 @@
 spring:
-  aplication:
+  application:
     name: ms-credit
   cloud:
     config:
       enabled: true
-      uri: http://localhost:8082
-logging:
-  level:
-    root: info
+      uri: http://localhost:8085
+  #profiles:
+    #active:
+      #- dev #(2)
+  #config:
+    #import: optional:configserver:http://localhost:8085
+  #cloud:
+    #config:
+      #profile: dev
+#eureka:
+  #client:
+    #service-url:
+      #defaultZone: http://localhost:8761/eureka
+    #enabled: false
+# Start Web Client
+#backend:
+  #service:
+    #url: http://localhost:8082/dumm-clients2/saludo
+  #eureka:
+    #url: http://client2/dummy-client2/saludo -- Video 02/03 min 0:51:18
+# End Web Client
+#management:
+  #endpoints:
+    #enabled-by-default: false
+    #web:
+      #exposure:
+        #include: health, info, refresh, restart, env
+  #endpoint:
+    #health:
+      #enabled: true
+    #info:
+      #enabled: true
+    #refresh:
+      #enabled: true
+    #restart:
+      #enabled: true
+    #env:
+      #enabled: true

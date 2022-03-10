@@ -10,4 +10,5 @@ public interface CreditService {
     Flux<Credit> findAllCredit();
     Mono<Credit> updateCredit(Credit c);
     Mono<Void> deleteCredit(String id);
+    Mono<String> message();
 }

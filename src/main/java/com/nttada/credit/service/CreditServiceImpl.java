@@ -4,13 +4,27 @@ import com.nttada.credit.modelo.Credit;
 import com.nttada.credit.repository.CreditRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
 public class CreditServiceImpl implements CreditService {
+
+    @Value("${backend.service.url}")
+    private String url;
+
+    @Override
+    public Mono<String> message() {
+        return WebClient
+                .create(url)
+                .get().retrieve()
+                .toEntity(String.class)
+                .map(response -> "Mensaje recibido"+ response.getBody());
+    }
 
     @Autowired
     CreditRepository creditRepository;
@@ -39,5 +53,4 @@ public class CreditServiceImpl implements CreditService {
     public Mono<Void> deleteCredit(String id) {
         return creditRepository.deleteById(id);
     }
-
 }
